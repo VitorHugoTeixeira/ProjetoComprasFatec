@@ -2,6 +2,8 @@ create database Compras;
 
 use Compras;
 
+select * from usuarios;
+
 create table usuarios
 (
 	id_usuario integer not null auto_increment primary key,
@@ -14,4 +16,8 @@ create table usuarios
 insert into usuarios (usuario, senha) values ('admin', md5('admin123'));
 
 select * from usuarios where senha = md5('admin123');
+
+alter table usuarios add column nome varchar(30) default '' after senha,
+                     add column tipo varchar(30) default '' after estatus;
+ 
 

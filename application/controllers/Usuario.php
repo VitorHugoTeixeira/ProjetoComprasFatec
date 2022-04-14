@@ -27,6 +27,29 @@
 
             echo json_encode($retorno);
         }
+
+        public function consultar(){
+            $json = file_get_contents('php://input');
+            $resultado = json_decode($json);
+
+            $usuario = $resultado->usuario;
+            $nome = $resultado->nome;
+            $tipo_usuario = strtoupper($resultado->tipo_usuario);
+
+            if(trim($tipo_usuario) != 'ADMINISTRADOR' &&
+               trim($tipo_usuario) != 'COMUM' &&
+               trim($tipo_usuario) != ''){
+                   $retorno = array('codigo' => 5,
+                                    'msg' => 'Tipo de usuário inválido');
+               }
+            else{
+                $this->load->model('m_usuario');
+
+                $retorno = $this->m_usuario->consultar($usuario, $nome, $tipo_usuario);
+            }
+
+            echo json_encode($retorno);
+        }
     }
 
 ?>

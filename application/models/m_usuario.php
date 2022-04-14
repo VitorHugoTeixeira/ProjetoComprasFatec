@@ -11,6 +11,21 @@
         
             return $dados;
         }
+
+        public function consultar($usuario, $nome, $tipo_usuario){
+            $sql = "select * from usuarios where estatus = ''";
+
+            if($usuario != '') $sql = $sql . " and usuario = '$usuario' ";
+            elseif($tipo_usuario != '') $sql = $sql . " and tipo = '$tipo_usuario' ";
+            elseif($nome != '') $sql = $sql . " and nome like '%$nome%' ";
+         
+            $retorno = $this->db->query($sql);
+
+            if($retorno->num_rows() > 0) $dados = array('codigo' => 1, 'msg' => 'Consulta efetuada com sucesso', 'dados' => $retorno->result());
+            else $dados = array('codigo' => 6, 'msg' => 'Dados não encontrados');
+            
+            return $dados;
+        }
     }
 
 ?>

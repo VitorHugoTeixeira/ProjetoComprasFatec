@@ -37,6 +37,14 @@
             return $dados;
         }
 
+        public function desativar($usuario){
+            $this->db->query("update usuarios set estatus = 'D' where usuario = '$usuario'");
+
+            if($this->db->affected_rows() > 0) $dados = array('codigo' => 1, 'msg' => 'Usuário DESATIVADO corretamente');
+            else $dados = array('codigo' => 6, 'msg' => 'Houve um problema na DESATIVAÇÃO do usuário'); 
+        
+            return $dados;
+        }
 
     }
 

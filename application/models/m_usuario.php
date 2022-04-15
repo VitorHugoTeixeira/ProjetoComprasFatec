@@ -26,6 +26,18 @@
             
             return $dados;
         }
+
+        public function alterar($usuario, $nome, $senha, $tipo_usuario){
+            $this->db->query("update usuarios set nome = '$nome', senha = md5('$senha'), tipo = '$tipo_usuario'
+                            where usuario = '$usuario'");
+
+            if($this->db->affected_rows() > 0) $dados = array('codigo' => 1, 'msg' => 'Usuário atualizado corretamente');
+            else $dados = array('codigo' => 6, 'msg' => 'Houve um problema na inserção na tabela de usuários'); 
+        
+            return $dados;
+        }
+
+
     }
 
 ?>

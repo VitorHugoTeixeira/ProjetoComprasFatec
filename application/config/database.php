@@ -96,3 +96,26 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$db['log'] = array(
+	'dsn'	=> 'BD_Log',
+	'hostname' => 'bo9dzxjtyb5kk0hr58xv-mysql.services.clever-cloud.com',
+	'username' => 'u9zxtz8tclmrsaak',
+	'password' => '3HssPl8o8LTWKCBTVClA',
+	'database' => 'bo9dzxjtyb5kk0hr58xv',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+

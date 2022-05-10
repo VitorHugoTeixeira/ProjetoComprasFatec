@@ -28,8 +28,18 @@
         }
 
         public function alterar($usuario, $nome, $senha, $tipo_usuario){
-            $this->db->query("update usuarios set nome = '$nome', senha = md5('$senha'), tipo = '$tipo_usuario'
-                            where usuario = '$usuario'");
+            $queryUpdate = "update usuarios set";
+            $fieldsUpdate = [" nome = '$nome',", " senha = md5('$senha'),", " tipo = '$tipo_usuario',"];
+            
+            if($nome != '') $queryUpdate = $queryUpdate . $fieldsUpdate[0];
+            if($senha != '') $queryUpdate = $queryUpdate . $fieldsUpdate[1];
+            if($tipo_usuario != '') $queryUpdate = $queryUpdate . $fieldsUpdate[2];
+            if($tipo_usuario == '' && $senha == '' && $nome == '') return array('codigo' => 7, 'msg' => 'Nenhum dado informado para atualizar');
+
+            //Remover a última virgula da string
+            $queryUpdate = substr($queryUpdate, 0, -1) . " where usuario = '$usuario'";
+            
+            $this->db->query($queryUpdate);
 
             if($this->db->affected_rows() > 0) $dados = array('codigo' => 1, 'msg' => 'Usuário atualizado corretamente');
             else $dados = array('codigo' => 6, 'msg' => 'Houve um problema na inserção na tabela de usuários'); 

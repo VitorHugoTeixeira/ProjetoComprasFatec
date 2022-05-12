@@ -55,7 +55,7 @@
             $json = file_get_contents('php://input');
             $resultado = json_decode($json);
 
-            $usuario = $resultado->usuario;
+            $usuario = isset($resultado->usuario) ? $resultado->usuario : '';
             $senha = isset($resultado->senha) ? $resultado->senha : ''; //isset para verificar se a variável existe
             $nome = isset($resultado->nome) ? $resultado->nome : ''; //isset para verificar se a variável existe
             $tipo_usuario = isset($resultado->tipo_usuario) ? strtoupper($resultado->tipo_usuario) : ''; 

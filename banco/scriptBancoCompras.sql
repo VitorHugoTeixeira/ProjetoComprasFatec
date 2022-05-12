@@ -2,7 +2,7 @@ create database Compras;
 
 use Compras;
 
-select * from usuarios;
+select usuario, senha  from usuarios;
 
 create table usuarios
 (

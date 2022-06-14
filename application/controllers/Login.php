@@ -7,8 +7,8 @@
             $json = file_get_contents('php://input');
             $resultado = json_decode($json);
 
-            $usuario = $resultado->usuario;
-            $senha = $resultado->senha;
+            $usuario = isset($resultado->usuario) ? $resultado->usuario : '';
+            $senha = isset($resultado->senha) ? $resultado->senha : '';
 
             if(trim($usuario) == ''){
                 $retorno = array('codigo' => 2,
